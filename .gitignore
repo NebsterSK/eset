@@ -1,4 +1,5 @@
 .idea
+.github
 .phpunit.cache
 build
 composer.lock
