@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace NebsterSK\Eset\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class EsetCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'eset';
 
     public $description = 'My command';
 
