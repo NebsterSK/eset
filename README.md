@@ -1,4 +1,4 @@
-# Common assets for LWS projects.
+# Common assets for LWS projects
 
 ## Installation
 
@@ -14,12 +14,6 @@ You can publish the config files with:
 
 ```bash
 php artisan vendor:publish --tag="eset-config"
-```
-
-## Testing
-
-```bash
-composer test
 ```
 
 ## Credits

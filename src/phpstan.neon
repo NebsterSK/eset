@@ -1,0 +1,80 @@
+includes:
+    - ./vendor/nunomaduro/larastan/extension.neon
+    - ./vendor/ekino/phpstan-banned-code/extension.neon
+#    - ./vendor/phpstan/phpstan-deprecation-rules/rules.neon
+parameters:
+
+    paths:
+        - app
+
+    level: 0
+
+    editorUrl: 'phpstorm://open?file=%%file%%&line=%%line%%'
+
+    checkModelProperties: true
+
+    ignoreErrors:
+#        - '#Unsafe usage of new static#'
+#        # this occurred when larastan was upgraded from 2.2.9 to 2.3.*. it is caused by multiple implementations of collect() helper function
+#        # after inspection, i do not know why phpstan suddenly started to prefer the Tightenco implementation of this method, but it definitely is a false positive
+#        - '#should return Illuminate\\Support\\Collection but returns Tightenco\\Collect\\Support\\Collection#'
+#        - '#\(Illuminate\\Support\\Collection\) does not accept Tightenco\\Collect\\Support\\Collection#'
+
+    banned_code:
+        nodes:
+            # enable detection of echo
+            -
+                type: Stmt_Echo
+                functions: null
+
+            # enable detection of eval
+            -
+                type: Expr_Eval
+                functions: null
+
+            # enable detection of die/exit
+            -
+                type: Expr_Exit
+                functions: null
+
+            # enable detection of a set of functions
+            -
+                type: Expr_FuncCall
+                functions:
+                    - dd
+                    - debug_backtrace
+                    - dump
+                    - exec
+                    - passthru
+                    - phpinfo
+                    - print_r
+                    - proc_open
+                    - shell_exec
+                    - system
+                    - var_dump
+                    - ray
+                    - rd
+
+        # enable detection of `use Tests\Foo\Bar` in a non-test file
+        use_from_tests: true
+
+    checkMissingIterableValueType: false
+    polluteScopeWithLoopInitialAssignments: false
+    polluteScopeWithAlwaysIterableForeach: false
+    checkAlwaysTrueCheckTypeFunctionCall: true
+    checkAlwaysTrueInstanceof: true
+    checkAlwaysTrueStrictComparison: true
+    checkExplicitMixedMissingReturn: true
+    checkFunctionNameCase: true
+    checkInternalClassCaseSensitivity: true
+    reportMaybesInMethodSignatures: true
+    reportStaticMethodSignatures: true
+    reportMaybesInPropertyPhpDocTypes: true
+
+rules:
+
+services:
+    -
+        class: PHPStan\Rules\SwitchConditions\MatchingTypeInSwitchCaseConditionRule
+        tags:
+            - phpstan.rules.rule
