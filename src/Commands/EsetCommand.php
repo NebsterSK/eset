@@ -14,20 +14,20 @@ class EsetCommand extends Command
     public function handle(): int
     {
         // Config files
-        File::copy(__DIR__ . '/../config/ray.php', config_path('ray.php'));
-        File::copy(__DIR__ . '/../config/ziggy.php', config_path('ziggy.php'));
+        File::copy(__DIR__ . '/../../assets/ray.php', config_path('ray.php'));
+        File::copy(__DIR__ . '/../../assets/ziggy.php', config_path('ziggy.php'));
 
         // Larastan
-        File::copy(__DIR__ . '/../phpstan.neon', base_path('phpstan.neon'));
+        File::copy(__DIR__ . '/../../assets/phpstan.neon', base_path('phpstan.neon'));
 
         // Pint
-        File::copy(__DIR__ . '/../pint.json', base_path('pint.json'));
+        File::copy(__DIR__ . '/../../assets/pint.json', base_path('pint.json'));
 
         // Traits
         if (!file_exists(app_path('Traits'))) {
             mkdir(app_path('Traits'));
         }
-        File::copy(__DIR__ . '/../app/Traits/EnumEnhancements.php', base_path('app/Traits/EnumEnhancements.php'));
+        File::copy(__DIR__ . '/../../assets/EnumEnhancements.php', base_path('app/Traits/EnumEnhancements.php'));
 
         return self::SUCCESS;
     }
