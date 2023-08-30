@@ -23,9 +23,15 @@ class EsetCommand extends Command
         // Pint
         File::copy(__DIR__ . '/../../assets/pint.json', base_path('pint.json'));
 
+        // ESET CSS mail theme
+        if (!File::exists(resource_path('views/vendor/mail/html/themes'))) {
+            File::makeDirectory(resource_path('views/vendor/mail/html/themes'), recursive: true);
+        }
+        File::copy(__DIR__ . '/../../assets/eset.css', resource_path('views/vendor/mail/html/themes/eset.css'));
+
         // Traits
-        if (!file_exists(app_path('Traits'))) {
-            mkdir(app_path('Traits'));
+        if (!File::exists(app_path('Traits'))) {
+            File::makeDirectory(app_path('Traits'));
         }
         File::copy(__DIR__ . '/../../assets/EnumEnhancements.php', base_path('app/Traits/EnumEnhancements.php'));
 
