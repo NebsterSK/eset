@@ -1,8 +1,13 @@
 # Common assets for LWS projects
 
+## Prerequisites
+
+- PHP 8.1 or higher
+- Laravel 10
+
 ## Installation
 
-You can install the package via composer:
+Install the package via Composer:
 
 ```bash
 composer require nebstersk/eset
@@ -10,10 +15,10 @@ composer require nebstersk/eset
 
 ## Usage
 
-You can publish the config files with:
+Publish common assets / files with:
 
 ```bash
-php artisan vendor:publish --tag="eset-config"
+php artisan eset:publish
 ```
 
 ## Credits
