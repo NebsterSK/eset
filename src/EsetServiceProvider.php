@@ -17,9 +17,7 @@ class EsetServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('eset')
-            ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_eset_table')
+            ->hasConfigFile(['ray', 'ziggy'])
             ->hasCommand(EsetCommand::class);
     }
 }
