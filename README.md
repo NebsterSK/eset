@@ -15,10 +15,20 @@ composer require nebstersk/eset
 
 ## Usage
 
-Publish common assets / files with:
+Publish common assets / files manually:
 
 ```bash
 php artisan eset:publish
+```
+
+Add the same command to composer.json for automatic publish with every Composer update:
+
+```json
+"scripts": {
+    "post-update-cmd": [
+      "@php artisan eset:publish"
+    ],
+}
 ```
 
 ## Credits

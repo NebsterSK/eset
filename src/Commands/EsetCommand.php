@@ -35,6 +35,8 @@ class EsetCommand extends Command
         }
         File::copy(__DIR__ . '/../../assets/EnumEnhancements.php', base_path('app/Traits/EnumEnhancements.php'));
 
+        $this->info('ESET assets published');
+
         return self::SUCCESS;
     }
 }
